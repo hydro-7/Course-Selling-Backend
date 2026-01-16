@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -14,7 +16,7 @@ app.use("/api/v1/admin", adminRouter);
 // before starting app.listen(), ensure that the db has been connected
 // if it fails to connect to the db, the backend shouldnt even start
 async function main() {
-    await mongoose.connect("<db_string>/<db_name>");
+    await mongoose.connect(process.env.MONGO_URL);
     app.listen(3000);
 }
 
